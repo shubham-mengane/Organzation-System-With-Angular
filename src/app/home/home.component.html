@@ -1,0 +1,47 @@
+<app-header></app-header>
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div>
+                <button routerLink="/addemp" class="btn btn-success">Add Employee</button>
+                <button (click)="onUpdate()" class="btn btn-warning">Update Employee</button>
+                <button (click)="onDelete()" class="btn btn-danger" >Delete Employee</button>           </div>
+            <br>
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Action</th>
+                    <th>Name</th>
+                    <th>Departement</th>
+                    <th>Status</th>
+                    <th>Phone NUmber</th>
+                    <th>Created dtm</th>
+                    <th>Updated dtm</th>
+                    <th>Email Id</th>
+                </tr>
+            </thead>
+             <tbody>
+                <tr *ngFor="let item of empData;index as i">
+                    <td>{{item.id}}</td>
+                    <td> <input (click)="onEdit(item.id)" type="radio" name="record"> </td>
+                    <td><a [routerLink]="['/details',item.id]">{{item.name}}</a></td>
+                    <td>{{item.department}}</td>
+                    <td><h3><span  [ngClass]="{
+                        'badge':true,
+                        'rounded-pill':true,
+                        'bg-success':item.status.toLowerCase()==='active',
+                        'bg-warning':item.status.toLowerCase()==='inactive',
+                        'bg-danger':item.status.toLowerCase()==='suspend'
+                      }">{{item.status}}</span></h3></td>
+                    <td>{{item.phoneno}}</td>
+                    <td>{{item.createddtm | date:'dd-MM-yyyy'}}</td>
+                    <td>{{item.updateddtm | date:'dd-MM-yyyy'}}</td>
+                    <td>{{item.emailid}}</td>
+                    </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
